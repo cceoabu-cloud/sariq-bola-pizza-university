@@ -6,62 +6,63 @@
   <title>Sariq Bola Pizza University</title>
 
   <style>
-    body{
-      margin:0;
-      font-family:Arial;
-      background:#111;
-      color:white;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      height:100vh;
-    }
-
-    .login-box{
-      background:#1e1e1e;
-      padding:40px;
-      border-radius:20px;
-      width:320px;
-      text-align:center;
-      box-shadow:0 0 20px rgba(0,0,0,0.5);
-    }
-
-    input{
-      width:100%;
-      padding:12px;
-      margin-top:10px;
-      border:none;
-      border-radius:10px;
-    }
-
-    button{
-      width:100%;
-      padding:12px;
-      margin-top:20px;
-      border:none;
-      border-radius:10px;
-      background:orange;
-      color:black;
-      font-weight:bold;
-      cursor:pointer;
-    }
-
-    h1{
-      color:orange;
-    }
+    body{margin:0;font-family:Arial;background:#111;color:white;display:flex;justify-content:center;align-items:center;height:100vh}
+    .login-box{background:#1e1e1e;padding:40px;border-radius:20px;width:320px;text-align:center;box-shadow:0 0 20px rgba(0,0,0,.5)}
+    input{width:100%;padding:12px;margin-top:10px;border:none;border-radius:10px}
+    button{width:100%;padding:12px;margin-top:20px;border:none;border-radius:10px;background:orange;color:black;font-weight:bold;cursor:pointer}
+    h1{color:orange}
+    #message{margin-top:15px;color:#ff6b6b}
   </style>
 </head>
-
 <body>
 
 <div class="login-box">
   <h1>SBP UNIVERSITY</h1>
 
-  <input type="email" placeholder="Email">
-  <input type="password" placeholder="Parol">
+  <input id="email" type="email" placeholder="Email">
+  <input id="password" type="password" placeholder="Parol">
 
-  <button>Kirish</button>
+  <button onclick="login()">Kirish</button>
+  <div id="message"></div>
 </div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyA12QrqiVyQQ5KhGe_C6rUCpIzuToBm5bc",
+    authDomain: "sariq-bola-pizza-university.firebaseapp.com",
+    projectId: "sariq-bola-pizza-university",
+    storageBucket: "sariq-bola-pizza-university.firebasestorage.app",
+    messagingSenderId: "653909022624",
+    appId: "1:653909022624:web:33589a64a09471223476c5",
+    measurementId: "G-00EYH6H8XM"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  window.login = function () {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const message = document.getElementById("message");
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        document.body.innerHTML = `
+          <div style="text-align:center">
+            <h1 style="color:orange">Xush kelibsiz!</h1>
+            <h2>Sariq Bola Pizza University</h2>
+            <p>Login muvaffaqiyatli amalga oshdi.</p>
+          </div>
+        `;
+      })
+      .catch(() => {
+        message.innerText = "Email yoki parol noto‘g‘ri!";
+      });
+  }
+</script>
 
 </body>
 </html>
