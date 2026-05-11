@@ -1,148 +1,59 @@
-```html
 <!DOCTYPE html>
 <html lang="uz">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>SBP UNIVERSITY</title>
 
 <style>
-
-body{
-  margin:0;
-  font-family:Arial;
-  background:#000;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-}
-
-.login-box{
-  background:#1b1b1b;
-  padding:40px;
-  border-radius:20px;
-  width:320px;
-  text-align:center;
-}
-
-h1{
-  color:orange;
-  margin-bottom:30px;
-}
-
-input{
-  width:100%;
-  padding:14px;
-  margin-top:15px;
-  border:none;
-  border-radius:10px;
-  font-size:16px;
-}
-
-button{
-  width:100%;
-  padding:14px;
-  margin-top:20px;
-  border:none;
-  border-radius:10px;
-  background:orange;
-  color:black;
-  font-size:18px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-button:hover{
-  opacity:0.9;
-}
-
-#error{
-  color:red;
-  margin-top:15px;
-}
-
+body{margin:0;font-family:Arial;background:#000;display:flex;justify-content:center;align-items:center;height:100vh}
+.login-box{background:#1b1b1b;padding:40px;border-radius:20px;width:320px;text-align:center}
+h1{color:orange;margin-bottom:30px}
+input{width:100%;padding:14px;margin-top:15px;border:none;border-radius:10px;font-size:16px}
+button{width:100%;padding:14px;margin-top:20px;border:none;border-radius:10px;background:orange;color:black;font-size:18px;font-weight:bold;cursor:pointer}
+#error{color:red;margin-top:15px}
 </style>
-
 </head>
 
 <body>
 
 <div class="login-box">
-
 <h1>SBP UNIVERSITY</h1>
-
 <input type="email" id="email" placeholder="Email">
-
 <input type="password" id="password" placeholder="Parol">
-
 <button id="loginBtn">Kirish</button>
-
 <p id="error"></p>
-
 </div>
 
 <script type="module">
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-import {
-  getAuth,
-  signInWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
-
-  apiKey: "AIzaSyA12QrqiVy0Q5KhGe_C6rUCpIzTuTBm5bc",
-
+  apiKey: "AIzaSyA12QrqiVyQQ5KhGe_C6rUCpIzuToBm5bc",
   authDomain: "sariq-bola-pizza-university.firebaseapp.com",
-
   projectId: "sariq-bola-pizza-university",
-
-  storageBucket: "sariq-bola-pizza-university.appspot.com",
-
+  storageBucket: "sariq-bola-pizza-university.firebasestorage.app",
   messagingSenderId: "653909022624",
-
-  appId: "1:653909022624:web:33589a64a09471223476c5"
-
+  appId: "1:653909022624:web:33589a64a09471223476c5",
+  measurementId: "G-00EYH6H8XM"
 };
 
 const app = initializeApp(firebaseConfig);
-
 const auth = getAuth(app);
 
-document.getElementById("loginBtn")
-.addEventListener("click", async () => {
-
-  const email =
-    document.getElementById("email").value;
-
-  const password =
-    document.getElementById("password").value;
+document.getElementById("loginBtn").addEventListener("click", async () => {
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
 
   try {
-
-    await signInWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-
-    alert("Muvaffaqiyatli kirdingiz!");
-
+    await signInWithEmailAndPassword(auth, email, password);
+    document.body.innerHTML = "<h1 style='color:orange'>Muvaffaqiyatli kirdingiz!</h1>";
   } catch (error) {
-
-    document.getElementById("error")
-    .innerText = "Email yoki parol noto‘g‘ri!";
-
+    document.getElementById("error").innerText = error.code;
   }
-
 });
-
 </script>
 
 </body>
 </html>
-```
