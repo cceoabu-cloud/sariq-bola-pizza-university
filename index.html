@@ -1,12 +1,67 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="uz">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sariq Bola Pizza University</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sariq Bola Pizza University</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family:Arial;
+      background:#111;
+      color:white;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+    }
+
+    .login-box{
+      background:#1e1e1e;
+      padding:40px;
+      border-radius:20px;
+      width:320px;
+      text-align:center;
+      box-shadow:0 0 20px rgba(0,0,0,0.5);
+    }
+
+    input{
+      width:100%;
+      padding:12px;
+      margin-top:10px;
+      border:none;
+      border-radius:10px;
+    }
+
+    button{
+      width:100%;
+      padding:12px;
+      margin-top:20px;
+      border:none;
+      border-radius:10px;
+      background:orange;
+      color:black;
+      font-weight:bold;
+      cursor:pointer;
+    }
+
+    h1{
+      color:orange;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="login-box">
+  <h1>SBP UNIVERSITY</h1>
+
+  <input type="email" placeholder="Email">
+  <input type="password" placeholder="Parol">
+
+  <button>Kirish</button>
+</div>
+
+</body>
 </html>
