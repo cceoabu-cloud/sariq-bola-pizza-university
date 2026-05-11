@@ -1,68 +1,148 @@
+```html
 <!DOCTYPE html>
 <html lang="uz">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sariq Bola Pizza University</title>
 
-  <style>
-    body{margin:0;font-family:Arial;background:#111;color:white;display:flex;justify-content:center;align-items:center;height:100vh}
-    .login-box{background:#1e1e1e;padding:40px;border-radius:20px;width:320px;text-align:center;box-shadow:0 0 20px rgba(0,0,0,.5)}
-    input{width:100%;padding:12px;margin-top:10px;border:none;border-radius:10px}
-    button{width:100%;padding:12px;margin-top:20px;border:none;border-radius:10px;background:orange;color:black;font-weight:bold;cursor:pointer}
-    h1{color:orange}
-    #message{margin-top:15px;color:#ff6b6b}
-  </style>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SBP UNIVERSITY</title>
+
+<style>
+
+body{
+  margin:0;
+  font-family:Arial;
+  background:#000;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+.login-box{
+  background:#1b1b1b;
+  padding:40px;
+  border-radius:20px;
+  width:320px;
+  text-align:center;
+}
+
+h1{
+  color:orange;
+  margin-bottom:30px;
+}
+
+input{
+  width:100%;
+  padding:14px;
+  margin-top:15px;
+  border:none;
+  border-radius:10px;
+  font-size:16px;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  margin-top:20px;
+  border:none;
+  border-radius:10px;
+  background:orange;
+  color:black;
+  font-size:18px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:hover{
+  opacity:0.9;
+}
+
+#error{
+  color:red;
+  margin-top:15px;
+}
+
+</style>
+
 </head>
+
 <body>
 
 <div class="login-box">
-  <h1>SBP UNIVERSITY</h1>
 
-  <input id="email" type="email" placeholder="Email">
-  <input id="password" type="password" placeholder="Parol">
+<h1>SBP UNIVERSITY</h1>
 
-  <button onclick="login()">Kirish</button>
-  <div id="message"></div>
+<input type="email" id="email" placeholder="Email">
+
+<input type="password" id="password" placeholder="Parol">
+
+<button id="loginBtn">Kirish</button>
+
+<p id="error"></p>
+
 </div>
 
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyA12QrqiVyQQ5KhGe_C6rUCpIzuToBm5bc",
-    authDomain: "sariq-bola-pizza-university.firebaseapp.com",
-    projectId: "sariq-bola-pizza-university",
-    storageBucket: "sariq-bola-pizza-university.firebasestorage.app",
-    messagingSenderId: "653909022624",
-    appId: "1:653909022624:web:33589a64a09471223476c5",
-    measurementId: "G-00EYH6H8XM"
-  };
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
+import {
+  getAuth,
+  signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-  window.login = function () {
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const message = document.getElementById("message");
+const firebaseConfig = {
 
-    signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        document.body.innerHTML = `
-          <div style="text-align:center">
-            <h1 style="color:orange">Xush kelibsiz!</h1>
-            <h2>Sariq Bola Pizza University</h2>
-            <p>Login muvaffaqiyatli amalga oshdi.</p>
-          </div>
-        `;
-      })
-      .catch(() => {
-        message.innerText = "Email yoki parol noto‘g‘ri!";
-      });
+  apiKey: "AIzaSyA12QrqiVy0Q5KhGe_C6rUCpIzTuTBm5bc",
+
+  authDomain: "sariq-bola-pizza-university.firebaseapp.com",
+
+  projectId: "sariq-bola-pizza-university",
+
+  storageBucket: "sariq-bola-pizza-university.appspot.com",
+
+  messagingSenderId: "653909022624",
+
+  appId: "1:653909022624:web:33589a64a09471223476c5"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+document.getElementById("loginBtn")
+.addEventListener("click", async () => {
+
+  const email =
+    document.getElementById("email").value;
+
+  const password =
+    document.getElementById("password").value;
+
+  try {
+
+    await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+    alert("Muvaffaqiyatli kirdingiz!");
+
+  } catch (error) {
+
+    document.getElementById("error")
+    .innerText = "Email yoki parol noto‘g‘ri!";
+
   }
+
+});
+
 </script>
 
 </body>
 </html>
+```
