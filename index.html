@@ -1,7 +1,5 @@
-```html
 <!DOCTYPE html>
 <html lang="uz">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,75 +7,68 @@
 <title>SBP UNIVERSITY</title>
 
 <style>
-
 body{
-margin:0;
-font-family:Arial;
-background:#000;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
+    margin:0;
+    font-family:Arial;
+    background:black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
 }
 
 .login-box{
-background:#1b1b1b;
-padding:40px;
-border-radius:20px;
-width:320px;
-text-align:center;
+    width:350px;
+    background:#1b1b1b;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
 }
 
 h1{
-color:orange;
-margin-bottom:30px;
+    color:orange;
+    margin-bottom:40px;
 }
 
 input{
-width:100%;
-padding:14px;
-margin-top:15px;
-border:none;
-border-radius:10px;
-font-size:16px;
+    width:100%;
+    padding:15px;
+    margin-top:15px;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
 }
 
 button{
-width:100%;
-padding:14px;
-margin-top:20px;
-border:none;
-border-radius:10px;
-background:orange;
-color:black;
-font-size:18px;
-font-weight:bold;
-cursor:pointer;
+    width:100%;
+    padding:15px;
+    margin-top:20px;
+    border:none;
+    border-radius:10px;
+    background:orange;
+    font-size:20px;
+    font-weight:bold;
+    cursor:pointer;
 }
 
 #error{
-color:red;
-margin-top:15px;
+    color:red;
+    margin-top:20px;
 }
-
 </style>
-
 </head>
 
 <body>
 
 <div class="login-box">
+    <h1>SBP UNIVERSITY</h1>
 
-<h1>SBP UNIVERSITY</h1>
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Parol">
 
-<input type="email" id="email" placeholder="Email">
+    <button onclick="login()">Kirish</button>
 
-<input type="password" id="password" placeholder="Parol">
-
-<button id="loginBtn">Kirish</button>
-
-<p id="error"></p>
-
+    <div id="error"></div>
 </div>
 
 <script type="module">
@@ -90,30 +81,19 @@ signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
-
-apiKey: "AIzaSyA12QrqiVy0Q5KhGe_C6rUCpIzTuTBm5bc",
-
-authDomain: "sariq-bola-pizza-university.firebaseapp.com",
-
-projectId: "sariq-bola-pizza-university",
-
-storageBucket: "sariq-bola-pizza-university.firebasestorage.app",
-
-messagingSenderId: "653909022624",
-
-appId: "1:653909022624:web:33589a64a09471223476c5",
-
-measurementId: "G-00EYH6H8XM"
-
+  apiKey: "AIzaSyA12QrqiVyQQ5KhGe_C6rUCpIzuToBm5bc",
+  authDomain: "sariq-bola-pizza-university.firebaseapp.com",
+  projectId: "sariq-bola-pizza-university",
+  storageBucket: "sariq-bola-pizza-university.appspot.com",
+  messagingSenderId: "653909202624",
+  appId: "1:653909202624:web:33589a64a09471223476c5"
 };
 
 const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
 
-document
-.getElementById("loginBtn")
-.addEventListener("click", async () => {
+window.login = function(){
 
 const email =
 document.getElementById("email").value;
@@ -121,39 +101,27 @@ document.getElementById("email").value;
 const password =
 document.getElementById("password").value;
 
-try {
+signInWithEmailAndPassword(auth,email,password)
 
-await signInWithEmailAndPassword(
-auth,
-email,
-password
-);
+.then(() => {
 
-document.body.innerHTML = `
-<h1 style="
-color:orange;
-font-family:Arial;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-background:black;
-">
-Xush kelibsiz CEO 🔥
-</h1>
-`;
+alert("Tizimga muvaffaqiyatli kirdingiz!");
 
-} catch (error) {
+window.location.href =
+"https://google.com";
 
-document.getElementById("error")
-.innerText = error.code;
+})
 
-}
+.catch((error) => {
+
+document.getElementById("error").innerText =
+error.message;
 
 });
+
+}
 
 </script>
 
 </body>
 </html>
-```
